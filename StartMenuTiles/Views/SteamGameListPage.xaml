@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="StartMenuTiles.Views.SteamGameListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StartMenuTiles.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:vm="using:StartMenuTiles.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:SteamGameListPageViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="GameTileTemplate">
+                <Grid Margin="5">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding NavCommand}" />
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="PointerEntered">
+                            <core:InvokeCommandAction Command="{Binding PointerEnteredCommand}" />
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="PointerExited">
+                            <core:InvokeCommandAction Command="{Binding PointerExitedCommand}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                    <Image Source="{Binding ImageSource}" Width="310" Height="150" Stretch="Fill" />
+                    <StackPanel VerticalAlignment="Bottom" Background="#AF000000" Padding="10 10 0 0">
+                        <TextBlock Text="{Binding GameName}" Margin="0 0 0 5" Height="40" TextWrapping="WrapWholeWords" />
+                    </StackPanel>
+                    <Border BorderBrush="{Binding BorderBrush}" BorderThickness="2" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Hub Header="Steam">
+        <HubSection Header="Games">
+            <HubSection.ContentTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemTemplate="{StaticResource GameTileTemplate}" ItemsSource="{Binding GameTiles}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid ItemHeight="160" ItemWidth="320" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DataTemplate>
+            </HubSection.ContentTemplate>
+        </HubSection>
+    </Hub>
+</Page>

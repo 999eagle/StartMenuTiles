@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="StartMenuTiles.Views.SteamTilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StartMenuTiles.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:StartMenuTiles.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:SteamConnectPageViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <TextBlock Text="Steam" Margin="12 12 12 12" Style="{ThemeResource HeaderTextBlockStyle}" />
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0 140 0 0">
+            <TextBlock HorizontalAlignment="Center" Text="Connect to your Steam profile" Style="{ThemeResource HeaderTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                <TextBlock Text="http://steamcommunity.com/id/" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <TextBox FontSize="34" Width="300" Text="{Binding ProfileUri, Mode=TwoWay}" Margin="10 0 0 0" />
+            </StackPanel>
+            <StackPanel Margin="0 10 0 20" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Visibility="{Binding ButtonVisibility}" Content="Connect" FontSize="34" Width="200" Command="{Binding ConnectCommand}" />
+                <Button Visibility="{Binding ButtonVisibility}" Content="Skip" FontSize="34" Width="200" Margin="40 0 0 0" Command="{Binding SkipCommand}" />
+                <ProgressRing Visibility="{Binding SpinnerVisibility}" Height="58" Width="58" IsActive="True" />
+            </StackPanel>
+            <TextBlock Foreground="Red" Text="{Binding ErrorMessage}" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding ErrorHint}" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" />
+            <TextBlock Margin="0 40 0 0" Text="If you skip this step you will have to search for your games manually." HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock Margin="0 0 0 0" Text="If you connect to your Steam profile your games will be listed here." HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" />
+        </StackPanel>
+    </Grid>
+</Page>
