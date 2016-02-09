@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="StartMenuTiles.Views.CreateTilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StartMenuTiles.Views"
+    xmlns:controls="using:StartMenuTiles.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:vm="using:StartMenuTiles.ViewModels"
+    xmlns:common="using:StartMenuTiles.Common"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:CreateTilePageViewModel />
+    </Page.DataContext>
+
+    <Hub Header="{Binding PageHeader}">
+        <HubSection>
+            <DataTemplate>
+                <StackPanel Margin="10 20 0 0">
+                    <TextBlock Text="Title" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBox Text="{Binding TileTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" />
+                    <controls:TileLogoImageControl DataContext="{Binding LogoImage}" />
+                </StackPanel>
+            </DataTemplate>
+        </HubSection>
+        <HubSection Header="Other Logos">
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <controls:TileLogoImageControl DataContext="{Binding WideImage}" />
+                        <controls:TileLogoImageControl DataContext="{Binding SmallImage}" Margin="0 40 0 0" />
+                    </StackPanel>
+                    <controls:TileLogoImageControl DataContext="{Binding LargeImage}" Margin="40 0 0 0" />
+                </StackPanel>
+            </DataTemplate>
+        </HubSection>
+    </Hub>
+</Page>

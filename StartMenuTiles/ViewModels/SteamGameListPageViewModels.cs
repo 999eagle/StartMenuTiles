@@ -1,4 +1,5 @@
 ﻿using StartMenuTiles.Mvvm;
+using StartMenuTiles.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +23,15 @@ namespace StartMenuTiles.ViewModels
         public SteamGameListPageViewModel()
         {
             GameTiles = new ObservableCollection<SteamGameListPage_GameTileViewModel>();
+
+            if (IsInDesignMode)
+            {
+                var gt = new SteamGameListPage_GameTileViewModel();
+                gt.AppId = 377160;
+                gt.GameName = "Fallout 4";
+                gt.ImageSource = "http://cdn.akamai.steamstatic.com/steam/apps/" + gt.AppId + "/header.jpg";
+                GameTiles.Add(gt);
+            }
         }
 
         public override void OnNavigatedTo(string parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -78,7 +88,7 @@ namespace StartMenuTiles.ViewModels
         private void ExecuteNav()
         {
             // data is passed as json
-            //(App.Current as App).NavigationService.Navigate(typeof(CreateTilePage), "{\"header\": \"Steam\", \"image_url\": \"" + m_imageSource + "\", \"target_url\": \"steam://run/" + m_appId + "\"}");
+            (App.Current as App).NavigationService.Navigate(typeof(CreateTilePage), "{\"header\": \"Steam\", \"tile_title\": \"" + m_gameName + "\", \"image_wide_url\": \"" + m_imageSource + "\", \"action\": \"steam://run/" + m_appId + "\"}");
         }
 
         Mvvm.Command m_pointerEnteredCommand;

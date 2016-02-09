@@ -29,7 +29,7 @@
                             <core:InvokeCommandAction Command="{Binding PointerExitedCommand}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
-                    <Image Source="{Binding ImageSource}" Width="310" Height="150" Stretch="Fill" />
+                    <Image Source="{Binding ImageSource}" Width="310" Height="150" Stretch="UniformToFill" />
                     <StackPanel VerticalAlignment="Bottom" Background="#AF000000" Padding="10 10 0 0">
                         <TextBlock Text="{Binding GameName}" Margin="0 0 0 5" Height="40" TextWrapping="WrapWholeWords" />
                     </StackPanel>
