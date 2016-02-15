@@ -101,8 +101,10 @@
     </Compile>
     <Compile Include="Common\BoolToVisibilityConverter.cs" />
     <Compile Include="Common\BootStrapper.cs" />
-    <Compile Include="Common\CircleButton.cs" />
-    <Compile Include="Common\TileCanvas.cs" />
+    <Compile Include="Common\CropHelper.cs" />
+    <Compile Include="Controls\CircleButton.cs" />
+    <Compile Include="Controls\CropControl.cs" />
+    <Compile Include="Controls\TileCanvas.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -124,6 +126,7 @@
     <Compile Include="TempDataStore.cs" />
     <Compile Include="Controls\TileLogoImageControl.cs" />
     <Compile Include="ViewModels\CreateTilePageViewModel.cs" />
+    <Compile Include="ViewModels\CropImagePageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModels.cs" />
     <Compile Include="ViewModels\SteamConnectPageViewModel.cs" />
     <Compile Include="ViewModels\SteamGameListPageViewModels.cs" />
@@ -132,6 +135,9 @@
     </Compile>
     <Compile Include="Views\CreateTilePage.xaml.cs">
       <DependentUpon>CreateTilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CropImagePage.xaml.cs">
+      <DependentUpon>CropImagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -191,6 +197,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CreateTilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CropImagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

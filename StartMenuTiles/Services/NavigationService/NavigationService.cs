@@ -80,7 +80,8 @@ namespace StartMenuTiles.Services.NavigationService
                 var dataContext = page.DataContext as INavigatable;
                 if (dataContext != null)
                 {
-                    await dataContext.OnNavigatedFromAsync(State(CurrentPageType), suspending);
+                    var state = State(CurrentPageType);
+                    await dataContext.OnNavigatedFromAsync(state, suspending);
                 }
             }
         }
@@ -90,15 +91,15 @@ namespace StartMenuTiles.Services.NavigationService
             LastNavigationParameter = parameter;
             LastNavigationType = _frame.Content.GetType().FullName;
 
-            if (mode == NavigationMode.New)
-            {
-                // clear state
-                var state = State();
-                foreach (var container in state.Containers)
-                {
-                    state.DeleteContainer(container.Key);
-                }
-            }
+            //if (mode == NavigationMode.New)
+            //{
+            //    // clear state
+            //    var state = State();
+            //    foreach (var container in state.Containers)
+            //    {
+            //        state.DeleteContainer(container.Key);
+            //    }
+            //}
 
             var page = _frame.Content as FrameworkElement;
             if (page != null)

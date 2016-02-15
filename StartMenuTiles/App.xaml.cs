@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Data.Json;
+using Windows.System;
 
 namespace StartMenuTiles
 {
@@ -38,6 +40,21 @@ namespace StartMenuTiles
         {
             this.NavigationService.Navigate(typeof(Views.MainPage));
             return Task.FromResult<object>(null);
+        }
+
+        public override async Task<bool> OnLaunchAsync(ILaunchActivatedEventArgs e)
+        {
+            if (e.TileId.StartsWith("Run_"))
+            {
+                JsonObject args = JsonObject.Parse(e.Arguments);
+                if (args.ContainsKey("url"))
+                {
+                    var url = args.GetNamedString("url");
+                    // LaunchUriAsynch returns false if launch failed
+                    return !(await Launcher.LaunchUriAsync(new Uri(url)));
+                }
+            }
+            return true;
         }
     }
 }

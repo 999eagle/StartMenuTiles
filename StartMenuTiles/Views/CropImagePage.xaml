@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="StartMenuTiles.Views.CropImagePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StartMenuTiles.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:StartMenuTiles.ViewModels"
+    xmlns:controls="using:StartMenuTiles.Controls"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:CropImagePageViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <controls:CropControl Color="#66000000" ClipRect="{Binding ClipRect, Mode=TwoWay}" ImageSource="{Binding ImageSource}" CroppedImageDestination="{Binding ImageDestination}" ImageCroppedCommand="{Binding ImageCroppedCommand}" />
+        <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" Text="Crop" Margin="12" VerticalAlignment="Top" HorizontalAlignment="Left" />
+    </Grid>
+</Page>

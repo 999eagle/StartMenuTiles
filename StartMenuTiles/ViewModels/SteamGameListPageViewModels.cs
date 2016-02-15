@@ -88,7 +88,13 @@ namespace StartMenuTiles.ViewModels
         private void ExecuteNav()
         {
             // data is passed as json
-            (App.Current as App).NavigationService.Navigate(typeof(CreateTilePage), "{\"header\": \"Steam\", \"tile_title\": \"" + m_gameName + "\", \"image_wide_url\": \"" + m_imageSource + "\", \"action\": \"steam://run/" + m_appId + "\"}");
+            var ja = new JsonObject();
+            ja.Add("header", JsonValue.CreateStringValue("Steam"));
+            ja.Add("tile_title", JsonValue.CreateStringValue(m_gameName));
+            ja.Add("image_wide_url", JsonValue.CreateStringValue(m_imageSource));
+            ja.Add("action", JsonValue.CreateStringValue("steam://run/" + m_appId));
+            ja.Add("id", JsonValue.CreateStringValue("Steam\\" + m_appId));
+            (App.Current as App).NavigationService.Navigate(typeof(CreateTilePage), ja.Stringify());
         }
 
         Mvvm.Command m_pointerEnteredCommand;

@@ -112,6 +112,11 @@ namespace StartMenuTiles.Common
 
         private async void InternalLaunchAsync(ILaunchActivatedEventArgs e)
         {
+            if (!(await OnLaunchAsync(e)))
+            {
+                Exit();
+                return;
+            }
             UIElement splashScreen = default(UIElement);
             if (SplashFactory != null)
             {
@@ -230,7 +235,8 @@ namespace StartMenuTiles.Common
 
             if (!args.Handled)
             {
-                NavigationService.GoForward();
+                if(NavigationService.CanGoForward)
+                    NavigationService.GoForward();
                 args.Handled = true;
             }
         }
@@ -242,6 +248,7 @@ namespace StartMenuTiles.Common
         public virtual Task OnInitializeAsync() { return Task.FromResult<object>(null); }
         public virtual Task OnSuspendingAsync(object s, SuspendingEventArgs e) { return Task.FromResult<object>(null); }
         public virtual void OnResuming(object s, object e) { }
+        public virtual Task<bool> OnLaunchAsync(ILaunchActivatedEventArgs e) { return Task.FromResult<bool>(true); }
 
 #endregion
 

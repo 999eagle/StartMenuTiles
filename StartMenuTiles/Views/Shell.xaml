@@ -5,7 +5,7 @@
     xmlns:views="using:StartMenuTiles.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:common="using:StartMenuTiles.Common"
+    xmlns:controls="using:StartMenuTiles.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -24,7 +24,7 @@
     </Page.Resources>
 
     <Grid>
-        <common:TileCanvas ImageSource="ms-appx:///Assets/bg.png" />
+        <controls:TileCanvas ImageSource="ms-appx:///Assets/bg.png" />
         <SplitView x:Name="ShellSplitView">
             <SplitView.Pane>
                 <Grid Background="{StaticResource SplitViewBackgroundBrush}">

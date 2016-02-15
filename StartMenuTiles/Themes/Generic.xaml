@@ -2,10 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:StartMenuTiles.ViewModels"
-    xmlns:common="using:StartMenuTiles.Common"
-    xmlns:local="using:StartMenuTiles.Controls">
+    xmlns:controls="using:StartMenuTiles.Controls">
 
-    <Style TargetType="local:TileLogoImageControl">
+    <Style TargetType="controls:TileLogoImageControl">
         <Setter Property="DataContext">
             <Setter.Value>
                 <vm:CreateTilePage_ImageViewModel />
@@ -13,7 +12,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:TileLogoImageControl">
+                <ControlTemplate TargetType="controls:TileLogoImageControl">
                     <Grid Margin="0 20 0 0" DataContext="{TemplateBinding DataContext}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -29,11 +28,12 @@
                             <TextBlock Text="{Binding Desc}" />
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0">
-                            <common:CircleButton Margin="5" FontSize="34" Icon="&#xe123;" Command="{Binding CropImageCommand}"/>
-                            <common:CircleButton Margin="5" FontSize="34" Icon="&#xe108;" Command="{Binding RemoveImageCommand}"/>
-                            <common:CircleButton Margin="5" FontSize="34" Icon="&#xe109;" Command="{Binding OpenImageCommand}"/>
+                            <controls:CircleButton Margin="5" FontSize="34" Icon="&#xe123;" Command="{Binding CropImageCommand}"/>
+                            <controls:CircleButton Margin="5" FontSize="34" Icon="&#xe108;" Command="{Binding RemoveImageCommand}"/>
+                            <controls:CircleButton Margin="5" FontSize="34" Icon="&#xe109;" Command="{Binding OpenImageCommand}"/>
                         </StackPanel>
-                        <Image Source="{Binding ImageSource}" Grid.Row="1" Grid.Column="1" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}" HorizontalAlignment="Left" />
+                        <Canvas Background="Black" Grid.Row="1" Grid.Column="1" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}" HorizontalAlignment="Left" />
+                        <Image Source="{Binding ImageSource}" Grid.Row="1" Grid.Column="1" Height="{Binding ImageHeight}" Width="{Binding ImageWidth}" HorizontalAlignment="Left" Stretch="Fill" />
                         <TextBlock Text="{Binding ParentPage.TileTitle}" Visibility="{Binding ShowTitle, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{Binding ParentPage.TileTextBrush}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Margin="10 0 10 20" HorizontalAlignment="Stretch" TextWrapping="Wrap" />
                         <StackPanel Grid.Row="2" Grid.Column="1" Margin="10 5 0 0">
                             <CheckBox Content="Show title" IsChecked="{Binding ShowTitle, Mode=TwoWay}" />
